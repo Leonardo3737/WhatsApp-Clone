@@ -1,0 +1,32 @@
+.navBar {
+  overflow: auto;
+  margin: 0 20px;
+  width: 35%;
+  box-sizing: border-box;
+}
+
+.chatCard {
+  padding: 5px;
+  margin: 15px;
+  border-bottom: solid 1px grey;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatCard:hover{
+  background-color: #24444d;
+}
+
+.name {
+  font-size: larger;
+  font-weight: 600;
+}
+
+.messageNavBar {
+  font-size: medium;
+  font-weight: 500;
+  color: #507984;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

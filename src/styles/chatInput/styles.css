@@ -1,0 +1,30 @@
+#form {
+  background-color: #2d535e;
+  padding: 7px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#input {
+  background-color: cadetblue;
+  padding: 15px 3px;
+  width: 70%;
+  height: auto;
+  border: none;
+  border-radius: 10px;
+  font-size: large;
+  resize: none;
+  overflow: auto;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+  padding: 0 15px;
+}
+
