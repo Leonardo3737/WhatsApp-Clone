@@ -1,3 +1,10 @@
+# Developer Note
+This application is a simple clone of WhatsApp, it was created with the aim of practicing and studying nextJS technology and the whatsapp-web.js library. For this application to work correctly, you will need to run the back-end(https://github.com/Leonardo3737/WhatsApp-Clone-Api.git) on your machine.
+
+
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
