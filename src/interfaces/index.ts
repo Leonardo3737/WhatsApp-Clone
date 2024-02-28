@@ -1,13 +1,15 @@
+import { Key } from "react"
+
 export interface Chat {
-  id: String,
-  name: String,
-  isGroup: Boolean,
+  id: String | null,
+  name: String | null,
+  isGroup: Boolean | null,
   lastMessage: {
     body: String,
     type: String,
     author: String,
-  },
-  timestamp: Number
+  } | null,
+  timestamp: Number | null
 }
 
 export interface Messages {
@@ -16,4 +18,9 @@ export interface Messages {
   author?: string,
   body: string,
   fromMe: Boolean
+}
+
+export interface Message {
+  isGroup: boolean,
+  message: Messages
 }

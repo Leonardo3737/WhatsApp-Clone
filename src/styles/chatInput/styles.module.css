@@ -1,4 +1,4 @@
-#form {
+.form {
   background-color: #2d535e;
   padding: 7px;
   display: flex;
@@ -6,9 +6,9 @@
   width: 100%;
 }
 
-#input {
+.input {
   background-color: cadetblue;
-  padding: 15px 3px;
+  padding: 10px 3px;
   width: 70%;
   height: auto;
   border: none;
@@ -18,7 +18,7 @@
   overflow: auto;
 }
 
-button {
+.button {
   background-color: transparent;
   border: none;
   display: flex;
@@ -28,3 +28,9 @@ button {
   padding: 0 15px;
 }
 
+@media only screen and (max-width: 767px) {
+  .input {
+    width: 90%;
+    margin: auto;
+  }
+}

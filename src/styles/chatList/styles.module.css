@@ -1,6 +1,6 @@
 .navBar {
   overflow: auto;
-  margin: 0 20px;
+  margin-top: 20px;
   width: 35%;
   box-sizing: border-box;
 }
@@ -9,6 +9,7 @@
   padding: 5px;
   margin: 15px;
   border-bottom: solid 1px grey;
+  color: rgb(226, 226, 226);
   display: flex;
   flex-direction: column;
 }
@@ -29,4 +30,11 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 700px) {
+  .navBar {
+    margin: auto;
+    width: 90%;
+  }
 }

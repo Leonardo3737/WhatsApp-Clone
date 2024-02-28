@@ -1,18 +1,16 @@
-'use client'
+import styles from '../../../styles/chatInput/styles.module.css'
 import React, { useState } from 'react';
 import { apiChat } from '../../../services/apiChat';
-import '../../../styles/chatInput/styles.css'
 import { IoSend } from "react-icons/io5";
-import { useSelectedChatStore } from '../../../stores/selectedChat';
+import { Chat } from '@/interfaces';
 
-const ChatInput = () => {
+const ChatInput = ({chatSelected}: {chatSelected: Chat}) => {
   const [message, setMessage] = useState<string>('');
-  const chatSelected = useSelectedChatStore((state:any)=> state.chatSelected)
 
   const sendMessage = () => {
-    if(message.length){
+    if(message.length && chatSelected.id){
       const sendMessage = new apiChat()
-      sendMessage.sendMessage(message, chatSelected)
+      sendMessage.sendMessage(message, chatSelected.id)
       setMessage('')      
     }
   }
@@ -27,7 +25,7 @@ const ChatInput = () => {
   return (
     <>
       <form
-        id='form'
+        className={styles.form}
         onSubmit={(e) => {
           sendMessage()
           e.preventDefault()
@@ -35,13 +33,14 @@ const ChatInput = () => {
       >
         <textarea
           onKeyDown={handleKeyDown}
-          id='input'
+          className={styles.input}
           rows={1}
           value={message}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
         />
         <button
           type='submit'
+          className={styles.button}
         >
           <IoSend />
         </button>

@@ -1,17 +1,15 @@
-'use client'
-
-import { Chat } from "../../../interfaces"
+import { Chat } from "@/interfaces"
 import { apiChat } from "../../../services/apiChat"
 import { Key, useState, useEffect } from "react"
-import '../../../styles/chatList/styles.css'
-import { useSelectedChatStore } from "../../../stores/selectedChat" 
+import styles from '@/styles/chatList/styles.module.css'
 import { connectSocket } from "../../../services/webSocket"
+import Card from "./Card"
 const socket = connectSocket()
 
 const ChatList = () => {
   const [chatList, setChatList] = useState<Chat[]>([])
   const [aux, setAux] = useState<Boolean>(true)
-  const setSelectedChat = useSelectedChatStore((state)=> state.modifyChatSelected)
+  
   const chats = new apiChat()
 
   async function get() {
@@ -28,21 +26,12 @@ const ChatList = () => {
   }, [aux])
 
   return (
-    <div className="navBar">
+    <div className={styles.navBar}>
       {chatList.length > 0 ? chatList.map((c: Chat, i:Key) => (
-        <div
+        <Card 
+          chat={c}
           key={i}
-          className="chatCard"
-          onClick={()=>{
-            setSelectedChat(c.id)
-            setTimeout(()=>{
-              console.log(chatList);
-            }, 1000)
-          }}
-        >
-          <div className="name">{c.name}</div>
-          <div className="messageNavBar">{c.lastMessage ?  c.lastMessage.type === 'chat' ? (<>{c.lastMessage?.body}</>) : (<></>) : (<></>)}</div>
-        </div>
+        />
       )) : null}
     </div>
   )
