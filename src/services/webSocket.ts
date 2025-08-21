@@ -4,7 +4,7 @@ let socket: Socket
 
 export function connectSocket():Socket{
   if (!socket) {
-    socket = io('http://localhost:5000', {
+    socket = io('http://192.168.100.72:5000', {
       withCredentials: true,
     });
   }

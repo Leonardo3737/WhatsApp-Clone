@@ -1,14 +1,16 @@
 import styles from '@/styles/chatScreen/styles.module.css'
 import { Key, useEffect, useRef, useState } from "react"
 import { apiChat } from "../../../../services/apiChat"
-import { Chat, Messages } from "../../../../interfaces/index"
+import { Chat, Messages as IMessages } from "../../../../interfaces/index"
 import { connectSocket } from "../../../../services/webSocket"
 import Message from "../Message"
 import Header from "../Header"
 const socket = connectSocket()
 
+type ResponseType = { isGroup: boolean, messages: IMessages[] }
+
 const Messages = ({chatSelected}: {chatSelected: Chat}) => {
-  const [messages, setMessages] = useState<[{ isGroup: Boolean }, Messages[]] | any[]>([{}, []])
+  const [messages, setMessages] = useState<ResponseType>()
   const [aux, setAux] = useState<Boolean>(true)
   const divRef = useRef<HTMLDivElement>(null);
 
@@ -16,7 +18,7 @@ const Messages = ({chatSelected}: {chatSelected: Chat}) => {
 
   async function get() {
     if (!chatSelected.id) return
-    const auxMessages: [{ isGroup: Boolean }, Messages[]] = await Messages.getMessages(chatSelected.id)
+    const auxMessages: ResponseType = await Messages.getMessages(chatSelected.id)
     // formatação do numero do autor da mensagem (apenas para grupos)
     /* const aux = [auxMessages[0], auxMessages[1].map((m:Messages)=>{
       const author:string = m.author?.indexOf("@c.us") !== -1 
@@ -28,6 +30,7 @@ const Messages = ({chatSelected}: {chatSelected: Chat}) => {
       } 
     })]  */
     setMessages(auxMessages)
+    console.log(auxMessages)
     const scrollToTheBottom = () => {
       const scrollEl = divRef.current;
       scrollEl?.scroll({
@@ -49,13 +52,13 @@ const Messages = ({chatSelected}: {chatSelected: Chat}) => {
       className={styles.screen}
       ref={divRef}
     >
-      {messages.length > 0 ? messages[1].map((m: Messages, i: Key) => m.body.length ? (
+      {messages && messages?.messages.length > 0 ? messages?.messages.map((m: IMessages, i: Key) => m.body.length ? (
         <Message
           key={i}
-          isGroup={messages[0].isGroup}
+          isGroup={messages.isGroup}
           message={m}
         />
-      ) : null) : null}
+      ) : <></>) : <></>}
 
     </div>
   )

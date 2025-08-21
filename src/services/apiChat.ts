@@ -2,7 +2,7 @@ import axios from "axios";
 
 export class apiChat {
   async sendMessage(message: String, to: String) {
-    const data = await axios.post(`http://localhost:5000/sendMessage`, {
+    const data = await axios.post(`http://192.168.100.72:5000/sendMessage`, {
       to: to,
       message: message
     })
@@ -13,7 +13,7 @@ export class apiChat {
   }
 
   async getMessages(user: String) {
-    const data = await axios.post(`http://localhost:5000/getMessages`, {
+    const data = await axios.post(`http://192.168.100.72:5000/getMessages`, {
       user: user
     })
     .then((res)=>{
@@ -28,7 +28,7 @@ export class apiChat {
   }
 
   async getChats() {
-    const data = await axios.get(`http://localhost:5000/getChats`)
+    const data = await axios.get(`http://192.168.100.72:5000/getChats`)
     .then((res)=>{
       return res.data
     })

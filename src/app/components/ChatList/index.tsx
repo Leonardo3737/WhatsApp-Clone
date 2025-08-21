@@ -14,6 +14,7 @@ const ChatList = () => {
 
   async function get() {
     const aux = await chats.getChats()
+    
     setChatList(aux)
   }
 
